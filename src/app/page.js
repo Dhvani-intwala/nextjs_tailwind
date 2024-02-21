@@ -6,15 +6,31 @@ export default function Home() {
   function Profile() {
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(true)
-   
+    const [setButtonText] = useState('Click Me');
+
     useEffect(() => {
+      fetchData();
+    }, []);
+
+   
+    const fetchData = () => {
       fetch('https://api.chucknorris.io/jokes/random?category=dev')
         .then((res) => res.json())
         .then((data) => {
           setData(data)
           setLoading(false)
         })
-    }, [])
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setLoading(false); // Set loading state to false if there's an error
+        });
+    };
+
+    const handleClick = () => {
+      
+      // setButtonText('Button Clicked');
+      fetchData();
+    };
     
    
     if (isLoading) return <p className="mt-12">Loading...</p>
@@ -24,11 +40,12 @@ export default function Home() {
       <div>
         <h1 className="text-center mt-12">{data.value}</h1>
         <div className="flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded mt-4 w-36" type="submit">
-            Click Me
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded mt-4 w-36" type="submit" onClick={handleClick}>
+          Click
           </button>
       </div>
-      </div>    
+      </div>
+     
     )
     
   }

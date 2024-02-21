@@ -24,7 +24,7 @@ export default function Home() {
       <div>
         <h1 className="text-center mt-12">{data.value}</h1>
         <div className="flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-36" type="submit">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded mt-4 w-36" type="submit">
             Click Me
           </button>
       </div>

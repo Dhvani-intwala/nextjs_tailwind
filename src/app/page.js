@@ -6,8 +6,8 @@ export default function Home() {
   function Profile() {
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(true)
-    const [setButtonText] = useState('Click Me');
-
+    const [visitorCount, setVisitorCount] = useState(0);
+  
     useEffect(() => {
       fetchData();
     }, []);
@@ -25,22 +25,23 @@ export default function Home() {
           setLoading(false); // Set loading state to false if there's an error
         });
     };
+   
+   
 
     const handleClick = () => {
-      
       // setButtonText('Button Clicked');
       fetchData();
     };
     
    
-    if (isLoading) return <p className="mt-12">Loading...</p>
+    if (isLoading) return <p className="mt-12 p-5">Loading...</p>
     if (!data) return <p className="mt-12">No profile data</p>
    
     return (
       <div>
-        <h1 className="text-center mt-12">{data.value}</h1>
+        <h1 className="text-center mt-12 p-5">{data.value}</h1>
         <div className="flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded mt-4 w-36" type="submit" onClick={handleClick}>
+          <button className="bg-blue-500 hover:bg-blue-600 text-black font-bold py-3 px-4 rounded mt-4 w-36" type="submit" onClick={handleClick}>
           Click
           </button>
       </div>
@@ -52,6 +53,7 @@ export default function Home() {
 
   return (
     <div className="w-full">
+      {/* Header */}
       <header className="bg-sky-400 text-white">
         <Image
           src="/w_s_logo.png"
@@ -73,8 +75,9 @@ export default function Home() {
         />
         <Profile/>
       </div>
+      {/* Footer */}
       <footer className="bg-sky-400 text-black p-5 py-5 text-center justify-items-center ">
-        <p>&copy; 2024 Your Web App. All rights reserved.</p>
+        <p>&copy; 2024 Your Web App. All rights reserved. Total Visitors:</p>
       </footer>
     </div>
   );
